@@ -156,4 +156,4 @@ def update(frame):
 # Create and save the animation
 num_frames = 300
 ani = FuncAnimation(fig, update, frames=num_frames, blit=True, interval=1000/30)
-ani.save('distribution_animation_even.mp4', writer='ffmpeg')
+ani.save('distribution_animation_even.gif', writer='ffmpeg')
