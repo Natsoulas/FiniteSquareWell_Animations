@@ -138,7 +138,7 @@ c4, c4error = quad(c4_integral,-100,100)
 print(f"C1: {c1}")
 print(f"C2: {c2}")
 print(f"C2: {c3}")
-print(f"C2: {c4}")
+print(f"C4: {c4}")
 print(f"normalized?: {np.abs(c1)**2+np.abs(c2)**2+np.abs(c3)**2+np.abs(c4)**2}")
 
 abs_sum = np.abs(c1)**2+np.abs(c2)**2+np.abs(c3)**2+np.abs(c4)**2
