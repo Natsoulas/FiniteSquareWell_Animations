@@ -78,8 +78,8 @@ for i, x in enumerate(x_values):
         P0[i] = np.abs(-F0*np.exp(-gamma_0*x))**2
         P1[i] = np.abs(-F1*np.exp(-gamma_1*x))**2
 
-plt.plot(x_values, P0, label='Ground State Distribution')
-plt.plot(x_values, P1, label='1st Excited State Distribution')
+plt.plot(x_values, P0, label='1st odd solution Distribution')
+plt.plot(x_values, P1, label='2nd odd solution Distribution')
 plt.xlabel('x')
 plt.ylabel('Probability')
 plt.legend()
@@ -96,8 +96,8 @@ for i, x in enumerate(x_values):
         P0[i] = -F0*np.exp(-gamma_0*x)
         P1[i] = -F1*np.exp(-gamma_1*x)
 
-plt.plot(x_values, P0, label='ψ0: Ground State')
-plt.plot(x_values, P1, label='ψ1: First Excited State')
+plt.plot(x_values, P0, label='ψ0: 1st odd solution')
+plt.plot(x_values, P1, label='ψ1: 2nd odd solution')
 plt.xlabel('x')
 plt.ylabel('Odd Wavefunctions')
 plt.legend()
