@@ -3,9 +3,9 @@ import matplotlib.pyplot as plt
 from matplotlib.animation import FuncAnimation
 from scipy.integrate import quad
 
-# Constants and parameters
+# Constants
 a = 1
-ħ = 1  # Set ħ to 1 for simplicity, adjust as needed
+ħ = 1  
 V0 = 25
 E0 = 1.7068  #1st even solution
 E1 = 14.7262  #2nd even solution
@@ -19,8 +19,6 @@ A1 = np.sqrt(1/(((np.abs(np.exp(gamma_1*a)*np.cos(k1*a))**2))*np.exp(-2*gamma_1*
 
 F0 = A0*np.exp(gamma_0*a)*np.cos(k0*a)
 F1 = A1*np.exp(gamma_1*a)*np.cos(k1*a)
-#F0_odd
-
 
 c1 = 0.5
 c2 = np.sqrt(3)/2
@@ -32,9 +30,9 @@ def ψ0(x):
     cond3 = x > a
 
     result = np.zeros_like(x)
-    result[cond1] = F0*np.exp(gamma_0*x) # Some expression for x < -a
-    result[cond2] = A0*np.cos(k0*x)  # Some expression for -a <= x <= a
-    result[cond3] = F0*np.exp(-gamma_0*x)  # Some expression for x > a
+    result[cond1] = F0*np.exp(gamma_0*x) 
+    result[cond2] = A0*np.cos(k0*x) 
+    result[cond3] = F0*np.exp(-gamma_0*x) 
     return result
 def ψ1(x):
     cond1 = x < -a
@@ -42,17 +40,15 @@ def ψ1(x):
     cond3 = x > a
 
     result = np.zeros_like(x)
-    result[cond1] = F1*np.exp(gamma_1*x)  # Some expression for x < -a
-    result[cond2] = A1*np.cos(k1*x)  # Some expression for -a <= x <= a
-    result[cond3] = F1*np.exp(-gamma_1*x)  # Some expression for x > a
+    result[cond1] = F1*np.exp(gamma_1*x)
+    result[cond2] = A1*np.cos(k1*x)
+    result[cond3] = F1*np.exp(-gamma_1*x)
     return result
 
 
-# Define the time-dependent probability distribution function
 def probability_distribution(x, t):
     ψ0_t = np.array([ψ0(x_i) for x_i in x]) * np.exp(-1j * E0 * t / ħ)
     ψ1_t = np.array([ψ1(x_i) for x_i in x]) * np.exp(-1j * E1 * t / ħ)
-    Ψ_t = c1 * ψ0_t + c2 * ψ1_t
     return np.abs(c1*ψ0_t + c2*ψ1_t)**2
 
 def probability_distribution_check(x):
@@ -63,8 +59,7 @@ def probability_distribution_ground(x):
 def probability_distribution_first_excited(x):
     return np.abs(ψ1(x))**2
 
-
-# Probability distributions
+#distributions
 P0 = np.zeros_like(x_values)
 P1 = np.zeros_like(x_values)
 
@@ -86,6 +81,7 @@ plt.ylabel('Probability')
 plt.legend()
 plt.show()
 
+#wavefunctions
 for i, x in enumerate(x_values):
     if x < -a:
         P0[i] = F0*np.exp(gamma_0*x)
@@ -107,18 +103,18 @@ plt.show()
 
 integral, error = quad(probability_distribution_check, -10, 10)
 
-print(f"Integral of probability distribution at t0: {integral}")
+print(f"Integral of stationary probability distribution: {integral}")
 print(f"Error: {error}")
 
-# Check if the probability distribution is normalized at time t0
+#normalized check
 tolerance = 1e-2
 if np.abs(integral - 1) < tolerance:
-    print(f"The probability distribution is normalized at time t0.")
+    print(f"The probability distribution is normalized.")
 else:
-    print(f"The probability distribution is not normalized at time t0.")
+    print(f"The probability distribution is not normalized.")
 
 t = 0
-# Set up the initial plot
+
 fig, ax = plt.subplots()
 ax.set_xlabel('x')
 ax.set_ylabel('P(x,t)')
@@ -135,6 +131,5 @@ def update(frame):
     return line,
 
 # Create and save the animation
-num_frames = 300
-ani = FuncAnimation(fig, update, frames=num_frames, blit=True, interval=1000/30)
-ani.save('distribution_animation_even.gif', writer='ffmpeg')
+probability_animation = FuncAnimation(fig, update, 300, blit=True, interval=1000/30)
+probability_animation.save('distribution_animation_even.gif', writer='ffmpeg')
