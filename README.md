@@ -1,7 +1,7 @@
 # FiniteSquareWell_Animations
 Animations for Finite Square Well potential solutions to the Schrödinger Equation. Superposition of the ground and first excited Eigen Energy States evolving with time.
 
-This is the provide potential where a is 1 and V0 is 25. all other constants are assumed to be 1.
+This is the prescribed potential where a is 1 and V0 is 25. all other constants are assumed to be 1.
 
 <img width="359" alt="finite_square_potential_well" src="https://user-images.githubusercontent.com/95187192/225965579-aad8f56f-73ab-400e-8610-af67079e652c.png">
 
